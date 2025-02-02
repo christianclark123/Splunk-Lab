@@ -201,7 +201,7 @@ Type ".\Sysmon64.exe -i ..\sysmonconfig.xml" Press enter. (-i flag states that y
 
 ![image](https://github.com/user-attachments/assets/76807a97-b150-4ee3-b21b-33fa27983814)
 
-*IMPORTANT* In order to instruct your Splunk forwarder on what is being sent to the Splunk server. Go to your client PC and go to Local Disk (C:) -> Program Files -> SplunkUniversalForwarder -> etc -> system -> local
+*IMPORTANT* To instruct your Splunk forwarder on what is being sent to the Splunk server. Go to your client PC and go to Local Disk (C:) -> Program Files -> SplunkUniversalForwarder -> etc -> system -> local
 
 ![image](https://github.com/user-attachments/assets/df7fb514-a293-4b38-9a83-f72afd197c9a)
 
@@ -215,9 +215,9 @@ Save it to the directory up above (Local Disk (C:) -> Program Files -> SplunkUni
 
 ![image](https://github.com/user-attachments/assets/e074f79b-1469-460e-b35c-686941ef51f4)
 
-In order for the changes to be made to the forwarder you have to look up the SplunkForwarder service by typing services (Run as Admin) in the windows search and restarting it. 
+In order for the changes to be made to the forwarder you have to look up the SplunkForwarder service by typing services (Run as Admin) in the Windows search and restarting it. 
 
-Once you find the service double-click it and go to the "Log On" tab and change to the Local System Account and hit apply.
+Once you find the service double-click it go to the "Log On" tab and change to the Local System Account and hit Apply.
 
 ![image](https://github.com/user-attachments/assets/86382c6f-7db8-4660-9b96-4bb056058fd1)
 
@@ -252,3 +252,13 @@ At the top of your Splunk server go to Apps -> Search & Reporting -> search inde
 If you click on the source and sourcetype you will see that Splunk is collecting data we set in the inputs.conf file (Security, Application, System, Sysmon)
 
 ![image](https://github.com/user-attachments/assets/d1f60832-2737-46ba-8ac9-91a855ca31d1)
+
+From here you can go through the different logs and research the different EventCodes and EventTypes to familiarize yourself with what they mean 
+
+![image](https://github.com/user-attachments/assets/ec0430f8-6623-4809-b698-c7d7e913474a)
+
+This image captured from my Splunk server for my endpoint index indicates the time the event occurred, the time the event was logged, the log name which is a security event, and the event code (5379) which is a credential manager. Credentials were accessed from the Windows credential Manager which is useful for security monitoring to detect unauthorized access. The Event type (0) means that it was an informational event which means its just a notification. It gives the Client name and domain it is located on.
+
+Go to this website for a <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor">Full list of Windows Event Codes</a>, the criticality, and an event summary.
+
+Go to this website for a <a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-even/1ed850f9-a1fe-4567-a371-02683c6ed3cb">List of Windows Event Type Codes</a>, which gives a description of the event type.
